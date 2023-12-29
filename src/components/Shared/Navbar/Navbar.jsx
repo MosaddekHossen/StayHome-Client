@@ -28,3 +28,5 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+// 3 no
