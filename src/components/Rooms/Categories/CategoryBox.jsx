@@ -1,7 +1,17 @@
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const CategoryBox = ({ label, icon: Icon }) => {
+
+    const { params, setParams } = useSearchParams();
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        console.log('clicked');
+    }
+
     return (
         <div
+            onClick={handleClick}
             className="flex
         flex-col
         items-center
