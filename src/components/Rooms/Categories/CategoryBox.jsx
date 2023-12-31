@@ -1,12 +1,22 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+import qs from "query-string";
 
 const CategoryBox = ({ label, icon: Icon }) => {
-
     const { params, setParams } = useSearchParams();
     const navigate = useNavigate();
 
     const handleClick = () => {
-        console.log('clicked');
+        let currentQuery = {}
+        if (params) {
+            currentQuery = qs.parse(params.toString())
+
+            const updatedQuery = { ...currentQuery, category: label }
+            const url = qs.stringifyUrl({
+                url: '/',
+                query: updatedQuery,
+            })
+            navigate(url)
+        }
     }
 
     return (
@@ -23,7 +33,7 @@ const CategoryBox = ({ label, icon: Icon }) => {
         transition
         cursor-pointer"
         >
-            <Icon />
+            <Icon size={26} />
             <div className="text-sm font-medium">{label}</div>
         </div>
     );
