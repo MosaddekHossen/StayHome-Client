@@ -3,6 +3,7 @@ import { categories } from "./CategoriesData";
 import CategoryBox from "./CategoryBox";
 
 const Categories = () => {
+    
     return (
         <>
             <Container>
