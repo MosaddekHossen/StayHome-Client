@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import qs from "query-string";
 
 const CategoryBox = ({ label, icon: Icon, selected }) => {
-    const [params, setParams] = useSearchParams();
+    const [params] = useSearchParams(); // , setParams
     const navigate = useNavigate();
     console.log(selected);
 
@@ -10,14 +10,13 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
         let currentQuery = {}
         if (params) {
             currentQuery = qs.parse(params.toString())
-
-            const updatedQuery = { ...currentQuery, category: label }
-            const url = qs.stringifyUrl({
-                url: '/',
-                query: updatedQuery,
-            })
-            navigate(url)
         }
+        const updatedQuery = { ...currentQuery, category: label }
+        const url = qs.stringifyUrl({
+            url: '/',
+            query: updatedQuery,
+        })
+        navigate(url)
     }
 
     return (
@@ -34,7 +33,7 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
             transition
             cursor-pointer ${selected
                     ? "border-b-neutral-800 text-neutral-800"
-                    : "border-transparent text-neutral-500"
+                    : ""
                 }`}
         >
             <Icon size={26} />
