@@ -4,7 +4,7 @@ import qs from "query-string";
 const CategoryBox = ({ label, icon: Icon, selected }) => {
     const [params] = useSearchParams(); // , setParams
     const navigate = useNavigate();
-    console.log(selected);
+    // console.log(selected);
 
     const handleClick = () => {
         let currentQuery = {}
