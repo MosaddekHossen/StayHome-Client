@@ -4,6 +4,7 @@ import Loader from "../../components/Shared/Loader";
 import Container from "../../components/Shared/Container";
 import { Helmet } from "react-helmet-async";
 import Header from "../../components/RoomDetails/Header";
+import RoomInfo from "../../components/RoomDetails/RoomInfo";
 
 const RoomDetails = () => {
     const { id } = useParams();
@@ -31,7 +32,7 @@ const RoomDetails = () => {
             <div className="">
                 <div className="flex flex-col gap-6">
                     <Header room={room} />
-                    {/* Room info */}
+                    <RoomInfo roomData={room} />
                     {/* Calender */}
                 </div>
             </div>
