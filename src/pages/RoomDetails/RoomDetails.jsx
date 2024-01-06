@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/Shared/Loader";
 import Container from "../../components/Shared/Container";
 import { Helmet } from "react-helmet-async";
+import Header from "../../components/RoomDetails/Header";
 
 const RoomDetails = () => {
     const { id } = useParams();
@@ -27,10 +28,9 @@ const RoomDetails = () => {
             <Helmet>
                 <title>{`StayHome | ${room?.title}`}</title>
             </Helmet>
-            {room?.title}
             <div className="">
                 <div className="flex flex-col gap-6">
-                    {/* Header */}
+                    <Header room={room} />
                     {/* Room info */}
                     {/* Calender */}
                 </div>
