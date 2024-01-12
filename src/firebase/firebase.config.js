@@ -1,12 +1,14 @@
-import { initializeApp } from 'firebase/app'
+
+import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA5Hoc_HCsIy8oNz6x31chQ0JTeniHYjyc",
-  authDomain: "one-conceptual.firebaseapp.com",
-  projectId: "one-conceptual",
-  storageBucket: "one-conceptual.appspot.com",
-  messagingSenderId: "822866373678",
-  appId: "1:822866373678:web:566d95ca9a3d6bf100c3bf"
+  apiKey: "AIzaSyDYSmgWDl-H2l6OteGHeSy9ZM7F563yNoE",
+  authDomain: "stayhome-afcc7.firebaseapp.com",
+  projectId: "stayhome-afcc7",
+  storageBucket: "stayhome-afcc7.appspot.com",
+  messagingSenderId: "180786954880",
+  appId: "1:180786954880:web:40e5f97049236807cf1c65"
 };
 
-export const app = initializeApp(firebaseConfig)
+// Initialize Firebase
+export const app = initializeApp(firebaseConfig);
