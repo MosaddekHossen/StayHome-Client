@@ -1,11 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { imageUpload } from '../../api/utils';
 import useAuth from '../../hooks/useAuth';
-import { saveUser } from '../../api/auth';
+import { getToken, saveUser } from '../../api/auth';
+import toast from 'react-hot-toast';
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile, signInWithGoogle } = useAuth();
+  const { createUser, updateUserProfile, signInWithGoogle, loading } = useAuth();
+  const navigate = useNavigate();
 
   // Form submit handler
   const handleSubmit = async event => {
@@ -27,9 +30,32 @@ const SignUp = () => {
       // Save UserData in database
       const dbResponse = await saveUser(result?.user)
       console.log(dbResponse);
+      // Get token
+      await getToken(result?.user?.email)
+      navigate('/')
+      toast.success('SignUp Successful!')
     }
     catch (error) {
       console.log(error);
+      toast.error(error?.message)
+    }
+  }
+
+  // Handle Google SignIn
+  const handleGoogleSignIn = async () => {
+    try {
+      // User Registration Using Google
+      const result = await signInWithGoogle()
+      console.log(result);
+      // Save user data in database
+      const dbResponse = await saveUser(result?.user)
+      console.log(dbResponse);
+      // Get token
+      await getToken(result?.user?.email)
+      navigate('/')
+      toast.success('SignUp successful!')
+    } catch (error) {
+      console.log(error?.message);
     }
   }
 
@@ -37,8 +63,8 @@ const SignUp = () => {
     <div className='flex justify-center items-center min-h-screen'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:px-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm text-gray-400'>Welcome to StayVista</p>
+          <h1 className='my-3 text-4xl font-bold animate-ping'>Sign Up</h1>
+          <p className='text-sm text-gray-400'>Welcome to StayHome</p>
         </div>
         <form
           onSubmit={handleSubmit}
@@ -109,7 +135,7 @@ const SignUp = () => {
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
             >
-              Continue
+              {loading ? <AiOutlineLoading3Quarters className='animate-spin mx-auto' /> : 'Continue'}
             </button>
           </div>
         </form>
@@ -120,7 +146,7 @@ const SignUp = () => {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
-        <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+        <div onClick={handleGoogleSignIn} className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>
