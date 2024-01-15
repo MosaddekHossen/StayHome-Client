@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth'
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { user, logOut } = useAuth({});
+  const { user, logOut } = useAuth();
 
   return (
     <div className='relative'>
