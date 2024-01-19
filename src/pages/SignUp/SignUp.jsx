@@ -135,7 +135,9 @@ const SignUp = () => {
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
             >
-              {loading ? <AiOutlineLoading3Quarters className='animate-spin mx-auto' /> : 'Continue'}
+              {
+                loading ? <AiOutlineLoading3Quarters className='animate-spin mx-auto' /> : 'Continue'
+              }
             </button>
           </div>
         </form>
