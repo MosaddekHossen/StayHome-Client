@@ -8,7 +8,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 const Login = () => {
   const { signIn, signInWithGoogle, loading } = useAuth();
   const navigate = useNavigate();
-  const
+  // const 
 
   // Form submit handler
   const handleSubmit = async event => {
