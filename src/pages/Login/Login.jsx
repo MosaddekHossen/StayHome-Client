@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import useAuth from '../../hooks/useAuth';
 import { getToken, saveUser } from '../../api/auth';
@@ -8,7 +8,8 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 const Login = () => {
   const { signIn, signInWithGoogle, loading } = useAuth();
   const navigate = useNavigate();
-  // const 
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
 
   // Form submit handler
   const handleSubmit = async event => {
@@ -23,7 +24,7 @@ const Login = () => {
       // Get token
       await getToken(result?.user?.email)
 
-      navigate('/')
+      navigate(from, { replace: true })
       toast.success('LogIn Successful!')
     }
     catch (error) {
@@ -43,7 +44,7 @@ const Login = () => {
       console.log(dbResponse);
       // Get token
       await getToken(result?.user?.email)
-      navigate('/')
+      navigate(from, { replace: true })
       toast.success('LogIn successful!')
     } catch (error) {
       console.log(error?.message);
